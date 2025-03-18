@@ -1,0 +1,54 @@
+body {
+  background-color: #f4f7fc;
+  font-family: "Arial", sans-serif;
+}
+
+.container {
+  max-width: 600px;
+  margin-top: 50px;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+h3 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-group label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #555;
+}
+
+.form-check-label {
+  font-size: 16px;
+}
+
+.btn-success {
+  padding: 12px;
+  font-size: 16px;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+.form-check {
+  margin-bottom: 10px;
+}
+
+.form-check-input {
+  margin-top: 5px;
+}
+
+.form-row {
+  margin-bottom: 15px;
+}
