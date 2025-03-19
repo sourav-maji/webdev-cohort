@@ -76,7 +76,8 @@ const searchButton = document.getElementById("searchButton");
 if (searchButton) {
   searchButton.addEventListener("click", function () {
     const userInput = searchBox.value;
-    if (!userInput) {
+
+    if (!userInput || !userInput.trim()) {
       return;
     }
     const filteredVideoData = searchVideos(videoData, userInput);
