@@ -31,6 +31,7 @@ cd Masterji/JS Assignment 1
 - style.css: Custom styling for the app to ensure a clean and responsive design.
 - index.js: JavaScript file for handling the form validation, date and mood selection logic.
 - report.html : User can view their submitted data in a report format.
+- README.md: This file explains how to set up and use the project.
 
 
 ## Usage
