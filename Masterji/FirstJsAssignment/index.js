@@ -1,10 +1,23 @@
+const emoji = {
+  happy:"😊",
+  sad:"😢",
+  neutral:"😐",
+  excited:"😄"
+}
+
 const saveButton = document.getElementById("saveButton");
 const inputDateElement = document.getElementById("inputDate");
 const showRecordButton = document.getElementById("showRecord");
+const moodElement = document.getElementsByName("mood");
+const warningMessage = document.getElementById("warningMessage");
 
 // Load the local storage data if found else intilize with empty array
 let totalMood = JSON.parse(localStorage.getItem("Total")) || [];
 console.log("totalMood", totalMood);
+
+if(inputDateElement){
+  inputDateElement.value = new Date().toISOString().split("T")[0];
+}
 
 if (saveButton) {
   saveButton.addEventListener("click", saveData);
@@ -15,10 +28,19 @@ if (showRecordButton) {
 
 const currentDate = new Date();
 function saveData() {
-  const moodElement = document.getElementsByName("mood");
   let moodElemtValue = "";
   const inputDateValue = inputDateElement.value;
-  console.log(inputDateElement.value);
+  // console.log(inputDateElement.value);
+
+  // check for duplicate value
+
+  const isDuplicate = checkDuplicate(totalMood, inputDateValue);
+  if (isDuplicate) {
+    console.log("Duplicate Record");
+    warningMessage.textContent = "Duplicate Record";
+    warningMessage.style.color = "orange";
+    return;
+  }
 
   for (i = 0; i < moodElement.length; i++) {
     if (moodElement[i].checked) {
@@ -27,14 +49,28 @@ function saveData() {
     }
   }
 
+  if (!inputDateElement || !moodElemtValue) {
+    console.log("Please Enter all the field");
+    warningMessage.textContent = "Please Enter All the Fields";
+    warningMessage.style.color = "orange";
+    return;
+  }
+
   const moodData = {
     date: inputDateValue,
     value: moodElemtValue,
   };
 
   totalMood.push(moodData);
+  localStorage.setItem("Total", JSON.stringify(totalMood))
+  warningMessage.textContent = "Data Saved Successfully";
+  warningMessage.style.color = "green";
 
-  localStorage.setItem("Total", JSON.stringify(totalMood));
+
+  // Reloads the page after time out
+  setTimeout(function () {
+    window.location.reload();
+  }, 2000);
 }
 
 function showRecord() {
@@ -49,7 +85,7 @@ const headingLabelElement = document.getElementById("headingLabel");
 
 function showReport(reportDataValue) {
   let reportTableBodyElement = document.getElementById("reportTableBody");
-  reportTableBodyElement.textContent=""
+  reportTableBodyElement.textContent = "";
   let slNo = 1;
   reportDataValue.forEach((e) => {
     const reportRow = document.createElement("tr");
@@ -59,7 +95,7 @@ function showReport(reportDataValue) {
     let reportDate = document.createElement("td");
     reportDate.textContent = e.date;
     let reportValue = document.createElement("td");
-    reportValue.textContent = e.value;
+    reportValue.textContent = emoji[e.value];
 
     reportRow.appendChild(reportSl);
     reportRow.appendChild(reportDate);
@@ -69,7 +105,7 @@ function showReport(reportDataValue) {
 }
 
 function pastDaysCalculate() {
-// console.log("called");
+  // console.log("called");
 
   const oneDaysAgo = new Date();
   oneDaysAgo.setDate(currentDate.getDate() - 2);
@@ -80,7 +116,9 @@ function pastDaysCalculate() {
   });
 
   console.log("Last 2 days data : ", last1DaysData);
-  showReport(last1DaysData)
+  showReport(last1DaysData);
+  const headingLabel = document.getElementById("headingLabel");
+  headingLabel.textContent = "Last 1 ";
 }
 
 function sevenDaysCalculate() {
@@ -96,7 +134,9 @@ function sevenDaysCalculate() {
 
   console.log("77777", last7DaysData);
 
-  showReport(sortMoodDataBasedOnDate(last7DaysData))
+  showReport(sortMoodDataBasedOnDate(last7DaysData));
+  const headingLabel = document.getElementById("headingLabel");
+  headingLabel.textContent = "Last 7 ";
 }
 
 function lastMonthCalculation() {
@@ -114,25 +154,26 @@ function lastMonthCalculation() {
 
   const sortedData = sortMoodDataBasedOnDate(last30DaysData);
   console.log("sortedData", sortedData);
-  showReport(sortedData)
+  showReport(sortedData);
+  const headingLabel = document.getElementById("headingLabel");
+  headingLabel.textContent = "Last Month ";
 }
 
 function sortMoodDataBasedOnDate(moodData) {
   return moodData.sort((a, b) => new Date(a.date) - new Date(b.date));
 }
 
+const last1dayElement = document.getElementById("last1day");
+const last7dayElement = document.getElementById("last7day");
+const last30dayElement = document.getElementById("last30day");
 
+if (last1dayElement && last7dayElement && last30dayElement) {
+  last1dayElement.addEventListener("click", pastDaysCalculate);
+  last7dayElement.addEventListener("click", sevenDaysCalculate);
+  last30dayElement.addEventListener("click", lastMonthCalculation);
+}
 
-const last1dayElement = document.getElementById("last1day")
-const last7dayElement = document.getElementById("last7day")
-const last30dayElement = document.getElementById("last30day")
-
-last1dayElement.addEventListener("click", pastDaysCalculate)
-last7dayElement.addEventListener("click", sevenDaysCalculate)
-last30dayElement.addEventListener("click", lastMonthCalculation)
-
-// sevenDaysCalculate();
-
-// pastDaysCalculate();
-
-// lastMonthCalculation();
+function checkDuplicate(inputObject, inputValue) {
+  let res = inputObject.filter((ele) => ele.date === inputValue);
+  return res.length;
+}
