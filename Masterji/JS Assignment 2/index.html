@@ -14,20 +14,20 @@
     <div class="m-4">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a href="#" class="navbar-brand">Youtube</a>
+                <a href="./index.html" class="navbar-brand">Youtube</a>
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
+                <!-- <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav">
                         <a href="#" class="nav-item nav-link active">Home</a>
                         <a href="#" class="nav-item nav-link">Profile</a>
                     </div>
-                </div>
+                </div> -->
                 <form class="d-flex">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                        <button type="button" class="btn btn-secondary"><i class="bi-search"></i></button>
+                    <div class="input-group">                    
+                        <input type="text" class="form-control" placeholder="Search" id="searchBox">
+                        <button type="button" class="btn btn-secondary" id="searchButton"><i class="bi-search"></i></button>
                     </div>
                 </form>
             </div>
@@ -42,8 +42,8 @@
                         <p class="card-text">channel name</p>
                     </div>
                 </div> -->
+            </div>
         </div>
-    </div>
     </div>
     <script src="./index.js"></script>
 
@@ -51,9 +51,9 @@
 
         fetchVideos();
 
-        setTimeout(function () {
-            showRecords(videoData)
-        }, 500)
+        setTimeout(function(){
+            showRecords(videoData.data.data)
+        },500)
 
 
 
