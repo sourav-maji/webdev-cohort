@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +20,7 @@
         crossorigin="anonymous"></script>
 
 </head>
+
 <body>
     <div class="container">
         <div class="card">
@@ -27,39 +29,41 @@
                     <!-- Buttons Side by Side -->
                     <div class="d-flex justify-content-center">
                         <button type="button" class="btn btn-success mx-2" id="last1day">Last 1 Day</button>
-                        <button type="button" class="btn btn-success mx-2"  id="last7day">Last 7 Days</button>
-                        <button type="button" class="btn btn-success mx-2"  id="last30day">Last 30 Days</button>
+                        <button type="button" class="btn btn-success mx-2" id="last7day">Last 7 Days</button>
+                        <button type="button" class="btn btn-success mx-2" id="last30day">Last 30 Days</button>
+                        <a href="./index.html"><button type="button" class="btn btn-success mx-2" id="backButton">Back To Previous Page</button></a>
                     </div>
                 </div>
             </div>
-        <div class="card">
-            <div class="row">
-                <div class="col-12 text-center mb-4">
-                    <h3>Mood Report <label id="headingLabel">All</label> Days</h3>
+            <div class="card">
+                <div class="row">
+                    <div class="col-12 text-center mb-4">
+                        <h3>Mood Report <label id="headingLabel">All</label> Days</h3>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-12 text-center mb-4">
-                    <table class="table" >
-                        <thead>
-                          <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Mood</th>
-                          </tr>
-                        </thead>
-                        <tbody id="reportTableBody">
-                        </tbody>
-                      </table>
+                <div class="row">
+                    <div class="col-12 text-center mb-4">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Mood</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reportTableBody">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="./index.js"></script>
-    <script>
-        showReport(totalMood)
-    </script>
+        <script src="./index.js"></script>
+        <script>
+            showReport(totalMood)
+        </script>
 </body>
+
 </html>
