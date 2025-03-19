@@ -7,14 +7,14 @@ let videoData = [];
 // Function to fetch and store the videos data using async/await
 async function fetchVideos() {
   try {
-    const response = await fetch(apiUrl); 
-    console.log("API called");
+    const response = await fetch(apiUrl);
+    // console.log("API called");
 
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    videoData = await response.json(); 
-    console.log("Fetched Data:", videoData); 
+    videoData = await response.json();
+    // console.log("Fetched Data:", videoData);
   } catch (error) {
     console.error("There was a problem with the fetch operation:", error);
   }
@@ -85,8 +85,8 @@ if (searchButton) {
 }
 
 function searchVideos(localVideoData, userInput) {
-  console.log(userInput);
-  console.log(localVideoData);
+//   console.log(userInput);
+//   console.log(localVideoData);
 
   const filteredVideoData = localVideoData.data.data.filter((e) => {
     const apiVideoTitle = e.items.snippet.localized.title.toLowerCase();
