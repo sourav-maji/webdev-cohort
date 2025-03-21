@@ -2,6 +2,11 @@
 
 This is a simple web application that allows users to search and display YouTube videos dynamically. The app fetches video data, displays video thumbnails, titles and allows users to filter the videos based on their search query.
 
+
+## Live Project URL
+[Live URL](https://videotube-mauve.vercel.app/)
+
+
 ## Features
 
 1. Search for videos by title.
