@@ -4,6 +4,10 @@ This is a simple Mood Tracker web application that allows users to track their m
 
 The application also includes a **Mood Report** feature, where users can see the mood for the last 1, 7, or 30 days.
 
+## Live Project URL
+[Live URL](https://moodtracker-lilac.vercel.app/)
+
+
 ## Features
 
 - Select a date using a date picker.
